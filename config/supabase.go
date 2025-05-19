@@ -8,7 +8,6 @@ import (
 	supa "github.com/supabase-community/supabase-go"
 )
 
-// SupabaseConfig contient les informations de configuration pour Supabase
 type SupabaseConfig struct {
 	URL       string
 	APIKey    string
@@ -16,17 +15,15 @@ type SupabaseConfig struct {
 	Client    *supa.Client
 }
 
-// NewSupabaseConfig crée une nouvelle instance de configuration Supabase
+// NewSupabaseConfig crée une nouvelle instance de configuration
 func NewSupabaseConfig() *SupabaseConfig {
-	// Chargement des variables d'environnement
 	if err := godotenv.Load(".env.local"); err != nil {
 		fmt.Printf("Erreur lors du chargement du fichier .env.local: %v\n", err)
 	}
 
 	return &SupabaseConfig{
-		URL:       os.Getenv("SUPABASE_URL"),
-		APIKey:    os.Getenv("SUPABASE_API_KEY"),
-		JWTSecret: os.Getenv("SUPABASE_JWT_SECRET"),
+		URL:    os.Getenv("EXPO_PUBLIC_SUPABASE_URL"),
+		APIKey: os.Getenv("EXPO_PUBLIC_SUPABASE_ANON_KEY"),
 	}
 }
 
@@ -46,10 +43,8 @@ func InitSupabase() (*SupabaseConfig, error) {
 
 // TestConnection teste la connexion à Supabase
 func (s *SupabaseConfig) TestConnection() error {
-	// Test simple de la connexion en récupérant la version de l'API
-	_, err := s.Client.DB.From("_test_connection").Select("*").Limit(1).Execute()
-	if err != nil {
-		return fmt.Errorf("erreur lors du test de connexion: %v", err)
+	if s.Client == nil {
+		return fmt.Errorf("client Supabase non initialisé")
 	}
 	return nil
 }

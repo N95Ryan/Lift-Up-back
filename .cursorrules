@@ -43,6 +43,10 @@
     {
       "name": "Commit Messages",
       "prompt": "When asked for a commit message, provide it in a snippet format that can be directly copied. Follow Conventional Commits format: type(scope): description. Use feat for new features, fix for bug fixes, chore for maintenance, docs for documentation, refactor for code refactoring. Include a bullet-point list of changes in the description when relevant."
+    },
+    {
+      "name": "Documentation",
+      "prompt": "Always follow the official documentation for each technology used. For Supabase, refer to https://supabase.com/docs. For Go, refer to https://golang.org/doc/. For Gin, refer to https://gin-gonic.com/docs/. Keep code aligned with the latest best practices from these sources."
     }
   ]
 } 
