@@ -1,0 +1,24 @@
+# Environnement
+.env.local
+.env
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+/vendor/
+
+# IDE
+.idea/
+.vscode/
+.cursorrules/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db 
