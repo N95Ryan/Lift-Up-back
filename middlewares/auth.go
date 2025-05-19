@@ -25,9 +25,9 @@ func AuthMiddleware() gin.HandlerFunc {
 			return
 		}
 
-		token := parts[1]
 		// TODO: Vérifier le token avec Supabase
 		// Pour l'instant, on accepte tous les tokens
+		_ = parts[1] // token sera utilisé une fois la vérification Supabase implémentée
 		c.Set("user_id", "test_user_id")
 		c.Next()
 	}

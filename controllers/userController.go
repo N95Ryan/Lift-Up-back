@@ -36,8 +36,10 @@ func (uc *UserController) UpdateProfile(c *gin.Context) {
 		return
 	}
 
-	userID := c.GetString("user_id")
 	// TODO: Mettre à jour les données de l'utilisateur dans Supabase
+	// userID sera utilisé une fois la connexion à Supabase établie
+	_ = c.GetString("user_id")
+
 	c.JSON(http.StatusOK, gin.H{"message": "Profile updated successfully"})
 }
 
