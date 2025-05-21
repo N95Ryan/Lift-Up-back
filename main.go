@@ -17,8 +17,7 @@ func main() {
 	}
 
 	// Initialisation de Supabase
-	supabase, err := config.InitSupabase()
-	if err != nil {
+	if _, err := config.InitSupabase(); err != nil {
 		log.Fatal("Failed to initialize Supabase:", err)
 	}
 
@@ -27,29 +26,6 @@ func main() {
 
 	// Configuration des routes
 	routes.SetupUserRoutes(router)
-
-	// Route de test
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-
-	// Route de test Supabase
-	router.GET("/test-supabase", func(c *gin.Context) {
-		if err := supabase.TestConnection(); err != nil {
-			c.JSON(500, gin.H{
-				"error": err.Error(),
-			})
-			return
-		}
-		c.JSON(200, gin.H{
-			"message": "Connexion à Supabase réussie !",
-			"config": gin.H{
-				"url": supabase.URL,
-			},
-		})
-	})
 
 	// Démarrage du serveur
 	log.Println("Server starting on :8080")
